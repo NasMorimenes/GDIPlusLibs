@@ -27,8 +27,8 @@ Class GdipSwitch {
 	static GetModuleHandle( hModule ) {
 		if ( !hModule) {
 			hModule := DllCall( "LoadLibrary"
-												, "Str", "gdiplus"
-												, "Ptr" )
+					  , "Str", "gdiplus"
+					  , "Ptr" )
 
 			GdipSwitch.hModule := hModule
 			statusLib := hModule ? 1 : 0
