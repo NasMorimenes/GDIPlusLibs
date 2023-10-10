@@ -11,8 +11,8 @@ Text translated by ChatGPT:
 Class GdipSwitch {
 
 	static hModule      := DllCall( "GetModuleHandle"
-                                  , "Str", "gdiplus"
-	                                  , "Ptr" )
+                                      , "Str", "gdiplus"
+	                              , "Ptr" )
 	static sizePointer  := A_PtrSize = 8 ? 24 : 16
 	static Token        := Buffer( GdipSwitch.sizePointer, 0 )
 	static sInput       := Buffer( 0, 0 )
@@ -36,8 +36,8 @@ Class GdipSwitch {
 		else {
 			GdipSwitch.GetOffGDIPlus()
 			statusLib := DllCall( "FreeLibrary"
-                          , "Ptr", hModule
-                          , "Int" )
+                          		    , "Ptr", hModule
+                                            , "Int" )
 
 			GdipSwitch.hModule := 0
 			statusLib := hModule ? 0 : 1
@@ -49,15 +49,15 @@ Class GdipSwitch {
 
 	static GetOnGDIPlus() {
 		statusGDIPlus := DllCall( "gdiplus\GdiplusStartup"
-                            , "Ptr"  	, GdipSwitch.Token.Ptr
-                            , "Ptr"   , GdipSwitch.sInput.Ptr
-                            , "Ptr"   , 0
-                            , "Int64" )
+                                        , "Ptr"  , GdipSwitch.Token.Ptr
+                                        , "Ptr"   , GdipSwitch.sInput.Ptr
+                                        , "Ptr"   , 0
+                                        , "Int64" )
     }
 
 	static GetOffGDIPlus() {
 		DllCall( "gdiplus\GdiplusShutdown"
-           , "Ptr", GdipSwitch.Token.Ptr )
+                       , "Ptr", GdipSwitch.Token.Ptr )
 		GdipSwitch.Token := 0
 
     }
@@ -65,8 +65,8 @@ Class GdipSwitch {
 	static GdiplusStartupInput() {        
 		GdipSwitch.sInput.Size := GdipSwitch.sizePointer
 		NumPut( "Ptr"
-          , 1
-          , GdipSwitch.sInput )
+                      , 1
+                      , GdipSwitch.sInput )
 		GdipSwitch.GetOnGDIPlus()
 	}
 }
