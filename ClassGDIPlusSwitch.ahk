@@ -49,18 +49,18 @@ Class GdipSwitch {
 
 	static GetOnGDIPlus() {
 		statusGDIPlus := DllCall( "gdiplus\GdiplusStartup"
-                                        , "Ptr"  , GdipSwitch.Token.Ptr
+                                        , "Ptr"   , GdipSwitch.Token.Ptr
                                         , "Ptr"   , GdipSwitch.sInput.Ptr
                                         , "Ptr"   , 0
                                         , "Int64" )
-    }
+	}
 
 	static GetOffGDIPlus() {
 		DllCall( "gdiplus\GdiplusShutdown"
                        , "Ptr", GdipSwitch.Token.Ptr )
 		GdipSwitch.Token := 0
 
-    }
+	}
 
 	static GdiplusStartupInput() {        
 		GdipSwitch.sInput.Size := GdipSwitch.sizePointer
